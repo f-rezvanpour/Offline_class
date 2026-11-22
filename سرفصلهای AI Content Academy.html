@@ -1,0 +1,713 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>سرفصل‌های AI Content Academy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;500;700;800&display=swap">
+<style>
+/* Layout: dark ink hero with a three-step staircase (one step per level), light reading body, level colors teal / amber / rose carry through every section */
+:root{
+  --bg:#F2F5F7; --surface:#FFFFFF; --surface2:#E6EDF2; --fg:#0F1D28; --muted:#4A5E6E; --line:#D0DBE3;
+  --hero:#0B1F2D; --hero-fg:#EAF3F7; --hero-muted:#9DB4C3; --hero-line:#1F3A4D;
+  --l1:#0A7A72; --l2:#955F00; --l3:#B3304F;
+  --l1s:#DDF1EE; --l2s:#FBEBC9; --l3s:#F8DDE3;
+  --l1f:#14A99D; --l2f:#E3A21A; --l3f:#D4506F;
+  --font-d:'Lalezar','Vazirmatn',Tahoma,sans-serif; --font-b:'Vazirmatn',Tahoma,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0A141C; --surface:#112230; --surface2:#17303F; --fg:#E7F0F5; --muted:#9DB4C3; --line:#22394A;
+  --hero:#07121A; --hero-line:#18303F;
+  --l1:#4FD1C5; --l2:#F2B84B; --l3:#F2819B;
+  --l1s:#0F2E2D; --l2s:#33270A; --l3s:#3A1621;
+  --l1f:#1FA99D; --l2f:#D99A18; --l3f:#C94668; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0A141C; --surface:#112230; --surface2:#17303F; --fg:#E7F0F5; --muted:#9DB4C3; --line:#22394A;
+  --hero:#07121A; --hero-line:#18303F;
+  --l1:#4FD1C5; --l2:#F2B84B; --l3:#F2819B;
+  --l1s:#0F2E2D; --l2s:#33270A; --l3s:#3A1621;
+  --l1f:#1FA99D; --l2f:#D99A18; --l3f:#C94668; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-b);font-size:16px;line-height:1.95;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hero);z-index:50}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.35}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--l2f);outline-offset:3px;border-radius:6px}
+.latin{font-family:var(--font-d);letter-spacing:.02em;direction:ltr;unicode-bidi:isolate}
+
+/* hero */
+.hero{background:var(--hero);color:var(--hero-fg);margin-top:calc(-1*env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 3rem);padding-bottom:0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:2.5rem;align-items:end}
+.kicker{display:inline-flex;gap:.6rem;align-items:center;font-size:.85rem;color:var(--hero-muted);letter-spacing:.02em;border:1px solid var(--hero-line);padding:.2rem .9rem;border-radius:99px}
+.hero h1{font-family:var(--font-d);font-weight:400;font-size:clamp(2.6rem,7vw,5rem);margin-top:1.2rem;line-height:1.15}
+.hero h1 .latin{display:block;font-size:.62em;color:var(--l1f);margin-top:.15em}
+.hero .sub{font-size:clamp(1.05rem,2.4vw,1.35rem);margin-top:1rem;color:var(--hero-fg);font-weight:500}
+.hero .lead{margin-top:.6rem;max-width:36rem;color:var(--hero-muted)}
+.stats{display:grid;grid-template-columns:repeat(4,auto);justify-content:start;gap:1rem 2.2rem;margin:2.2rem 0 3rem;padding:0;list-style:none}
+.stats li{display:flex;flex-direction:column}
+.stats b{font-family:var(--font-d);font-weight:400;font-size:2.4rem;line-height:1.2}
+.stats span{font-size:.85rem;color:var(--hero-muted)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);align-items:end;gap:.5rem;height:17rem}
+.step{border-radius:14px 14px 0 0;padding:1rem .9rem;display:flex;flex-direction:column;justify-content:flex-end;gap:.15rem;color:#fff;text-decoration:none}
+.step small{opacity:.85;font-size:.78rem}
+.step b{font-size:1.05rem;line-height:1.5}
+.step em{font-style:normal;font-family:var(--font-d);font-size:1.7rem;line-height:1.2}
+.step.s1{height:42%;background:var(--l1f)}
+.step.s2{height:70%;background:var(--l2f);color:#1B1200}
+.step.s3{height:100%;background:var(--l3f)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--hero);border-top:1px solid var(--hero-line);border-bottom:1px solid var(--hero-line)}
+.nav-in{display:flex;gap:.25rem;overflow-x:auto;scrollbar-width:none;padding-block:.35rem}
+.nav-in::-webkit-scrollbar{display:none}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--hero-muted);font-size:.92rem;padding:.35rem .9rem;border-radius:99px;transition:background .15s,color .15s}
+.nav a:hover{background:var(--hero-line);color:var(--hero-fg)}
+
+/* sections */
+section{padding-block:4rem}
+.eyebrow{font-size:.85rem;color:var(--muted);letter-spacing:.02em;margin-bottom:.5rem;display:block}
+h2{font-family:var(--font-d);font-weight:400;font-size:clamp(1.9rem,4.5vw,2.8rem)}
+.sec-lead{max-width:44rem;color:var(--muted);margin-top:.8rem}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;margin-top:2rem}
+.about-grid p+p{margin-top:1rem}
+.logic{display:grid;gap:.8rem;align-content:start}
+.logic div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem}
+.logic b{display:block;margin-bottom:.1rem}
+.logic .a1 b{color:var(--l1)} .logic .a2 b{color:var(--l2)} .logic .a3 b{color:var(--l3)}
+.logic p{font-size:.93rem;color:var(--muted);line-height:1.8}
+.band{background:var(--surface2)}
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin:2rem 0 0;padding:0;list-style:none;counter-reset:s}
+.five li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem;counter-increment:s;font-size:.93rem;line-height:1.75}
+.five li::before{content:counter(s,persian);display:block;font-family:var(--font-d);font-size:1.7rem;color:var(--l1);line-height:1.2;margin-bottom:.3rem}
+.method{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:2rem}
+.method div{border-top:3px solid var(--line);padding-top:.8rem}
+.method .m1{border-color:var(--l1f)} .method .m2{border-color:var(--l2f)} .method .m3{border-color:var(--l3f)}
+.method b{display:block}
+.method p{font-size:.93rem;color:var(--muted);line-height:1.8}
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem 2rem;margin:2rem 0 0;padding:0;list-style:none}
+.principles li{position:relative;padding-right:1.4rem}
+.principles li::before{content:"";position:absolute;right:0;top:.85em;width:.65rem;height:.65rem;border-radius:2px;background:var(--l2f);transform:rotate(45deg)}
+
+/* roadmap */
+.road{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.rcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.4rem;display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.rcard .tag{align-self:flex-start;font-size:.8rem;font-weight:700;padding:.1rem .8rem;border-radius:99px}
+.rcard h3{font-size:1.25rem}
+.rcard .hrs{font-family:var(--font-d);font-size:2.2rem;line-height:1.2}
+.rcard ol{margin:.4rem 0 0;padding:0;list-style:none;display:grid;gap:.1rem;font-size:.92rem;line-height:1.7}
+.rcard ol a{display:flex;gap:.6rem;text-decoration:none;padding:.15rem 0}
+.rcard ol a:hover span:last-child{text-decoration:underline}
+.rcard ol .n{flex:none;width:1.4rem;font-family:var(--font-d);color:var(--muted)}
+.rcard.c1{border-top:5px solid var(--l1f)} .rcard.c1 .tag,.rcard.c1 .hrs{color:var(--l1)} .rcard.c1 .tag{background:var(--l1s)}
+.rcard.c2{border-top:5px solid var(--l2f)} .rcard.c2 .tag,.rcard.c2 .hrs{color:var(--l2)} .rcard.c2 .tag{background:var(--l2s)}
+.rcard.c3{border-top:5px solid var(--l3f)} .rcard.c3 .tag,.rcard.c3 .hrs{color:var(--l3)} .rcard.c3 .tag{background:var(--l3s)}
+
+/* levels */
+.level{padding-block:4rem;border-top:1px solid var(--line)}
+.lv-head{display:grid;grid-template-columns:1fr auto;gap:1rem 2rem;align-items:end}
+.lv-badge{display:inline-block;font-size:.85rem;font-weight:700;padding:.1rem .9rem;border-radius:99px;margin-bottom:.7rem}
+.lv-sub{color:var(--muted);margin-top:.5rem;font-size:1.05rem}
+.lv-meta{font-size:.9rem;color:var(--muted)}
+.lv-info{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+.lv-info>div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.2rem 1.3rem;min-width:0}
+.lv-info h4{font-size:1rem;margin-bottom:.5rem}
+.lv-info p,.lv-info li{font-size:.93rem;line-height:1.85;color:var(--muted)}
+.lv-info ul{margin:0;padding:0;list-style:none;display:grid;gap:.2rem}
+.lv-info li{position:relative;padding-right:1.1rem}
+.lv-info li::before{content:"";position:absolute;right:0;top:.8em;width:.45rem;height:.45rem;border-radius:50%;background:var(--ac)}
+.lv1{--ac:var(--l1f);--tx:var(--l1);--soft:var(--l1s)}
+.lv2{--ac:var(--l2f);--tx:var(--l2);--soft:var(--l2s)}
+.lv3{--ac:var(--l3f);--tx:var(--l3);--soft:var(--l3s)}
+.lv-badge{background:var(--soft);color:var(--tx)}
+.tools{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.8rem}
+.tools h3{font-size:1.2rem}
+.btn{font:inherit;font-size:.88rem;cursor:pointer;background:var(--surface);color:var(--fg);border:1px solid var(--line);padding:.3rem 1rem;border-radius:99px}
+.btn:hover{border-color:var(--ac)}
+.chap{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:.7rem;overflow:hidden}
+.chap[open]{border-color:var(--ac)}
+.chap summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;gap:0 1.1rem;align-items:center;padding:1.1rem 1.3rem}
+.chap summary::-webkit-details-marker{display:none}
+.cnum{font-family:var(--font-d);font-size:2.4rem;line-height:1;color:var(--tx);min-width:2.2rem;text-align:center}
+.ctitle{font-weight:700;font-size:1.08rem;line-height:1.6}
+.cgoal{grid-column:2;color:var(--muted);font-size:.9rem;line-height:1.75;margin-top:.15rem}
+.chip{font-size:.8rem;padding:.05rem .75rem;border-radius:99px;background:var(--soft);color:var(--tx);white-space:nowrap;font-weight:500}
+.chev{grid-column:3;grid-row:2;justify-self:end;width:1.1rem;height:1.1rem;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin-top:.2rem}
+.chap[open] .chev{transform:rotate(-135deg)}
+.cbody{padding:0 1.3rem 1.4rem;display:grid;gap:1.2rem;border-top:1px dashed var(--line);padding-top:1.2rem}
+.cbody h5{margin:0 0 .35rem;font-size:.85rem;color:var(--tx);letter-spacing:.02em;font-weight:700}
+.cdesc{max-width:60rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.two>div{min-width:0}
+.topics{margin:0;padding:0;list-style:none;display:grid;gap:.15rem}
+.topics li{position:relative;padding-right:1.2rem;font-size:.95rem;line-height:1.8}
+.topics li::before{content:"";position:absolute;right:0;top:.8em;width:.5rem;height:2px;background:var(--ac)}
+.box{background:var(--soft);border-radius:12px;padding:.9rem 1.1rem;font-size:.93rem;line-height:1.85}
+.box+.box{margin-top:.8rem}
+.sess{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;counter-reset:q}
+.sess li{counter-increment:q;border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;font-size:.86rem;line-height:1.7;min-width:0}
+.sess li::before{content:counter(q,persian);display:block;font-family:var(--font-d);font-size:1.25rem;line-height:1.2;color:var(--tx)}
+
+/* tables */
+.tbl{overflow-x:auto;margin-top:2rem;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:right;padding:.8rem 1.1rem;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.8}
+th{background:var(--surface2);font-size:.85rem;color:var(--muted);font-weight:700}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+.eval{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-top:2rem}
+.eval div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1rem}
+.eval b{font-family:var(--font-d);font-weight:400;font-size:2rem;color:var(--l1);display:block;line-height:1.2}
+.eval span{font-size:.92rem;line-height:1.7;display:block}
+.bar{display:flex;height:.7rem;border-radius:99px;overflow:hidden;margin-top:1.5rem;gap:2px}
+.bar i{flex:1}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem 2rem;margin-top:2rem}
+.gloss div{display:grid;grid-template-columns:9rem 1fr;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line);font-size:.93rem;line-height:1.8}
+.gloss dt{font-weight:700;direction:ltr;text-align:right;unicode-bidi:isolate;color:var(--l1)}
+.gloss dd{margin:0;color:var(--muted)}
+.gloss dl{display:contents}
+.notes{margin:2rem 0 0;padding:0;list-style:none;display:grid;gap:.7rem}
+.notes li{background:var(--surface);border:1px solid var(--line);border-right:4px solid var(--l2f);border-radius:12px;padding:.8rem 1.1rem;font-size:.95rem}
+footer{background:var(--hero);color:var(--hero-muted);padding-block:2.5rem;font-size:.9rem;text-align:center;padding-bottom:calc(2.5rem + env(safe-area-inset-bottom,0px))}
+footer b{color:var(--hero-fg);font-family:var(--font-d);font-weight:400;font-size:1.3rem;display:block}
+
+@media (max-width:900px){
+  .hero-grid,.about-grid,.road,.lv-info,.two,.method,.principles,.gloss{grid-template-columns:1fr}
+  .steps{height:12rem}
+  .five,.eval{grid-template-columns:repeat(2,1fr)}
+  .sess{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,auto)}
+}
+@media (max-width:520px){
+  section,.level{padding-block:2.8rem}
+  .chap summary{grid-template-columns:auto 1fr;padding:1rem}
+  .chip{grid-column:2;justify-self:start;margin-top:.3rem}
+  .cgoal{grid-column:1 / -1;margin-top:.5rem}
+  .chev{display:none}
+  .gloss div{grid-template-columns:1fr;gap:0}
+  .gloss dt{text-align:left}
+  .lv-head{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+<script>document.documentElement.dir='rtl';document.documentElement.lang='fa';</script>
+
+<div dir="rtl" lang="fa">
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">نسخه طراحی آموزشی · ۱ آذر ۱۴۰۵</span>
+      <h1>راهنمای جامع سرفصل‌ها<span class="latin">AI Content Academy</span></h1>
+      <p class="sub">سه مسیر تخصصی برای تولیدکنندگان محتوا، ادمین‌ها و معماران سیستم‌های هوشمند</p>
+      <p class="lead">از گوشی هوشمند و تولید محتوای روزمره تا استراتژی چندکاناله، اتوماسیون، مدل‌های لوکال و ایجنت‌های هوشمند.</p>
+      <ul class="stats">
+        <li><b>۱۲۰</b><span>ساعت آموزش</span></li>
+        <li><b>۲۴</b><span>فصل</span></li>
+        <li><b>۳</b><span>سطح مستقل</span></li>
+        <li><b>۵</b><span>ساعت هر فصل</span></li>
+      </ul>
+    </div>
+    <div class="steps" aria-label="سه سطح دوره">
+      <a class="step s1" href="#level-1"><small>۴۰ ساعت</small><b>مقدماتی</b><em class="latin" style="font-size:1rem">Creator</em></a>
+      <a class="step s2" href="#level-2"><small>۴۰ ساعت</small><b>پیشرفته</b><em class="latin" style="font-size:1rem">Strategist</em></a>
+      <a class="step s3" href="#level-3"><small>۴۰ ساعت</small><b>فوق‌پیشرفته</b><em class="latin" style="font-size:1rem">Architect</em></a>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="فهرست بخش‌ها">
+  <div class="wrap nav-in">
+    <a href="#about">درباره کتابچه</a>
+    <a href="#roadmap">نقشه راه</a>
+    <a href="#level-1">مقدماتی</a>
+    <a href="#level-2">پیشرفته</a>
+    <a href="#level-3">فوق‌پیشرفته</a>
+    <a href="#transfer">انتقال مهارت‌ها</a>
+    <a href="#eval">ارزیابی</a>
+    <a href="#glossary">واژه‌نامه</a>
+    <a href="#sources">منابع</a>
+  </div>
+</nav>
+
+<main>
+<section id="about">
+  <div class="wrap">
+    <span class="eyebrow">درباره این کتابچه</span>
+    <h2>نقشه آموزشی سه دوره مستقل اما پیوسته</h2>
+    <div class="about-grid">
+      <div>
+        <p>این کتابچه نقشه آموزشی سه دوره مستقل اما پیوسته در حوزه هوش مصنوعی و تولید محتواست. مخاطب اصلی آن ادمین‌های اینستاگرام، تولیدکنندگان محتوا، سناریونویسان، مدیران شبکه‌های اجتماعی و صاحبان کسب‌وکار هستند.</p>
+        <p>مهارت‌ها با تمرکز بر اینستاگرام طراحی شده‌اند، اما اصول تحقیق، تولید، تحلیل و اتوماسیون برای شبکه‌های اجتماعی دیگر نیز قابل انتقال‌اند.</p>
+        <p>ساختار کالن برنامه شامل سه سطح ۴۰ ساعته است. هر سطح ۸ فصل پنج‌ساعته دارد و هر فصل را می‌توان در پنج جلسه یک‌ساعته ضبط و تدریس کرد. این زمان‌ها، زمان آموزشی خالص‌اند؛ زمان استراحت، تمرین بیرون کلاس، نصب نرم‌افزار و پشتیبانی جداگانه محاسبه می‌شود.</p>
+      </div>
+      <div class="logic">
+        <div class="a1"><b>مقدماتی</b><p>فهم پایه، کار با گوشی، ساخت محتوا و مدیریت روزمره پیج؛ بدون نیاز به دانش برنامه‌نویسی.</p></div>
+        <div class="a2"><b>پیشرفته</b><p>استراتژی، تحقیق، دستیار اختصاصی، تولید حرفه‌ای، تحلیل داده و مدیریت فرایند تیمی.</p></div>
+        <div class="a3"><b>فوق‌پیشرفته</b><p>n8n، API، اتصال رسمی سرویس‌ها، مدل‌های لوکال، RAG، ComfyUI و ایجنت‌ها با نظارت انسانی.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="method">
+  <div class="wrap">
+    <span class="eyebrow">روش آموزشی و ضبط</span>
+    <h2>مفهوم در استودیو، اجرا روی صفحه نمایش</h2>
+    <p class="sec-lead">روش پیشنهادی ترکیبی است: مفاهیم و چارچوب‌ها در استودیو یا مقابل دوربین تدریس می‌شوند و بخش‌های اجرایی با ضبط صفحه نمایش داده می‌شوند.</p>
+    <div class="method">
+      <div class="m1"><b>مقدماتی</b><p>گوشی و نمای نزدیک از صفحه موبایل، محور اصلی ضبط است.</p></div>
+      <div class="m2"><b>پیشرفته</b><p>ترکیبی از موبایل و لپ‌تاپ استفاده می‌شود.</p></div>
+      <div class="m3"><b>فوق‌پیشرفته</b><p>ضبط صفحه کامپیوتر، ترمینال و پنل‌های فنی ضروری است.</p></div>
+    </div>
+    <h3 style="margin-top:3rem;font-size:1.3rem">تقسیم استاندارد پنج ساعت هر فصل</h3>
+    <p class="sec-lead" style="margin-top:.4rem">هر فصل در پنج جلسه ۶۰ دقیقه‌ای اجرا می‌شود.</p>
+    <ol class="five">
+      <li>مبانی و چارچوب مفهومی</li>
+      <li>نمایش ابزار و اجرای مدرس</li>
+      <li>تمرین هدایت‌شده</li>
+      <li>کارگاه و پروژه کوچک</li>
+      <li>رفع اشکال، ارزیابی و جمع‌بندی</li>
+    </ol>
+    <h3 style="margin-top:3rem;font-size:1.3rem">اصول مهم در تدوین و به‌روزرسانی</h3>
+    <ul class="principles">
+      <li>هر ابزار باید در خدمت یک مسئله واقعی باشد.</li>
+      <li>نسخه و تاریخ نرم‌افزار هنگام ضبط ثبت شود.</li>
+      <li>خروجی AI بدون بازبینی و بررسی حقوق استفاده نهایی نیست.</li>
+      <li>اتصال اینستاگرام فقط از مسیر رسمی و با مجوز معتبر آموزش داده شود.</li>
+      <li>در پروژه‌ها از داده آزمایشی یا داده دارای مجوز روشن استفاده شود.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="wrap">
+    <span class="eyebrow">نقشه راه آموزشی</span>
+    <h2>فهرست فصل‌ها</h2>
+    <p class="sec-lead">هر فصل پنج ساعت آموزش دارد؛ هر سطح ۴۰ ساعت و کل مسیر ۱۲۰ ساعت است. روی هر فصل بزنید تا به شرح آن برسید.</p>
+    <div class="road" id="road"></div>
+  </div>
+</section>
+
+<div id="levels"></div>
+<script>
+var LV=[];
+LV.push({
+ id:1,name:'مقدماتی',en:'AI Content Creator',role:'تولیدکننده محتوای هوشمند',
+ sub:'از کاربر مبتدی تا تولیدکننده محتوای مجهز به هوش مصنوعی',
+ meta:'۴۰ ساعت آموزش خالص | ۸ فصل | ۴۰ جلسه پیشنهادی یک‌ساعته',
+ aud:'ادمین‌های تازه‌کار، تولیدکنندگان محتوا، صاحبان کسب‌وکار و افرادی که می‌خواهند استفاده کاربردی از هوش مصنوعی را از گوشی آغاز کنند.',
+ out:['شناخت کاربردها و محدودیت‌های هوش مصنوعی در کار محتوا','توانایی نوشتن دستورهای روشن و قابل تکرار','تولید متن، تصویر، صوت و ویدئوی کوتاه با تمرکز بر ابزارهای موبایلی','طراحی تقویم محتوایی و مدیریت روزمره پیج','خواندن شاخص‌های پایه عملکرد و اصلاح محتوا'],
+ equip:'گوشی هوشمند نسبتاً به‌روز، اینترنت، فضای ذخیره‌سازی کافی، حساب کاربری در ابزارهای منتخب، هدفون و اپلیکیشن ویرایش تصویر/ویدئو. استفاده از لپ‌تاپ در این سطح اختیاری است.',
+ ch:[]
+});
+LV[0].ch.push({
+ t:'شناخت هوش مصنوعی برای کاربر محتوا',
+ g:'این فصل زبان مشترک دوره را می‌سازد. هنرجو ابتدا می‌فهمد هوش مصنوعی مولد چه کاری انجام می‌دهد، چه زمانی به آن اعتماد کند و چه زمانی باید خروجی را بررسی یا اصلاح کند. تأکید فصل بر فهم کاربردی است، نه ریاضیات و برنامه‌نویسی.',
+ d:'هوش مصنوعی را به‌عنوان یک دستیار احتمالاتی می‌شناسیم؛ ابزاری که می‌تواند متن، تصویر، صدا و ویدئو بسازد یا داده‌های ورودی را تحلیل کند، اما لزوماً حقیقت را نمی‌داند و ممکن است با اطمینان پاسخ نادرست بدهد. تفاوت مدل‌های زبانی، تصویری، صوتی و چندوجهی معرفی می‌شود. سپس کاربردهای روزمره برای ادمین بررسی می‌شود: ایده‌پردازی، خلاصه‌سازی، نوشتن کپشن، تحلیل تصویر، تبدیل گفتار به متن و کمک به برنامه‌ریزی. بخش مهم دیگر، مرزبندی استفاده مسئولانه است: اطلاعات محرمانه مشتری، رمزها، داده‌های شخصی و اسناد حساس نباید بدون مجوز در ابزارهای عمومی بارگذاری شوند.',
+ tp:['هوش مصنوعی، یادگیری ماشین و هوش مصنوعی مولد به زبان ساده','تفاوت مدل زبانی، تصویری، صوتی و چندوجهی','تفاوت سرویس ابری و مدل قابل‌اجرا روی دستگاه','کاربردهای واقعی AI در وظایف ادمین و تولیدکننده محتوا','خطا، توهم، سوگیری و راستی‌آزمایی پاسخ‌ها','حریم خصوصی، حق نشر، رضایت صاحب تصویر و امنیت اطلاعات'],
+ w:'هنرجو یک درخواست واقعی ادمینی را به سه بخش تقسیم می‌کند: کاری که AI می‌تواند انجام دهد، بخشی که به بررسی انسانی نیاز دارد و اطلاعاتی که نباید وارد ابزار شود. سپس یک پاسخ تولیدشده را با منبع مستقل یا داده واقعی راستی‌آزمایی می‌کند.',
+ o:'نقشه کاربردهای هوش مصنوعی برای یک پیج مشخص + چک‌لیست شخصی استفاده امن و مسئولانه.',
+ s:['آشنایی با مفهوم AI و مدل‌های مولد','شناخت ابزارها و انتخاب ابزار متناسب با کار','تمرین تشخیص پاسخ معتبر و نامعتبر','کاربردهای AI در وظایف واقعی ادمین','مرور، آزمون کوتاه و ساخت چک‌لیست استفاده']
+});
+LV[0].ch.push({
+ t:'جعبه‌ابزار موبایلی و آماده‌سازی محیط کار',
+ g:'هنرجو یاد می‌گیرد با گوشی یک محیط کاری مرتب و قابل اتکا برای تولید محتوا بسازد؛ از مدیریت فایل و دسترسی‌ها تا انتخاب اپلیکیشن‌های ضروری و نگهداری خروجی‌ها.',
+ d:'در این فصل گوشی به ایستگاه اصلی تولید محتوا تبدیل می‌شود. هنرجو با تفاوت اپلیکیشن، نسخه وب و قابلیت‌های درون‌برنامه‌ای آشنا می‌شود و یاد می‌گیرد برای هر وظیفه ابزار مناسب انتخاب کند. به‌جای معرفی فهرستی از ده‌ها اپلیکیشن، معیار انتخاب آموزش داده می‌شود: کیفیت خروجی، زبان فارسی، هزینه، محدودیت منطقه‌ای، حریم خصوصی، قابلیت خروجی گرفتن و امکان ادامه کار در ابزار دیگر. ساخت پوشه‌های منظم، نام‌گذاری فایل‌ها، مدیریت فضای ذخیره‌سازی، اسکرین‌شات، ضبط صفحه و انتقال امن فایل‌ها نیز تمرین می‌شود.',
+ tp:['معیار انتخاب ابزار هوش مصنوعی و تشخیص نسخه رسمی','مدیریت حساب‌ها، تنظیمات، زبان و دسترسی‌ها','کار با چت‌بات در اپلیکیشن و مرورگر موبایل','بارگذاری تصویر، فایل و صوت و دریافت خروجی','مدیریت پوشه‌ها، نام‌گذاری و نسخه‌بندی فایل‌ها','آشنایی با ابزارهای موبایلی طراحی، تدوین و زیرنویس','مدیریت اینترنت، باتری، حافظه و کیفیت خروجی'],
+ w:'ساخت یک پوشه پروژه برای یک برند فرضی؛ ثبت بریف، تصاویر مرجع، کپشن‌ها، سناریوها، خروجی‌های تصویری و ویدئویی و فایل نهایی انتشار. هنرجو یک فرایند را فقط با گوشی از ورودی تا خروجی اجرا می‌کند.',
+ o:'محیط کاری موبایلی مرتب + الگوی نام‌گذاری فایل و چک‌لیست انتخاب ابزار.',
+ s:['طراحی محیط کاری گوشی و مدیریت حساب‌ها','کار با چت‌بات‌ها و فایل‌ها در موبایل','انتخاب و نصب ابزارهای مکمل','مدیریت فایل، حافظه و خروجی‌ها','اجرای یک گردش‌کار کامل فقط با گوشی']
+});
+LV[0].ch.push({
+ t:'پرامپت‌نویسی و گفت‌وگوی مؤثر با هوش مصنوعی',
+ g:'این فصل به هنرجو یاد می‌دهد به‌جای دستورهای مبهم، درخواست دقیق و قابل ارزیابی بنویسد و با چند مرحله گفت‌وگو، خروجی را به نتیجه مطلوب نزدیک کند.',
+ d:'پرامپت فقط یک جمله یا کلمه کلیدی نیست؛ صورت‌بندی مسئله و تعریف خروجی مورد انتظار است. هنرجو می‌آموزد زمینه، نقش، هدف، مخاطب، محدودیت‌ها، لحن، قالب خروجی و معیار موفقیت را در درخواست خود مشخص کند. سپس با مثال، نمونه مرجع و بازخورد مرحله‌ای کیفیت پاسخ را بالا می‌برد. تفاوت دستور یک‌مرحله‌ای با زنجیره‌ای از درخواست‌ها توضیح داده می‌شود و هنرجو تمرین می‌کند از مدل بخواهد سؤال‌های ضروری را قبل از تولید خروجی بپرسد. همچنین یاد می‌گیرد پرامپت‌های موفق را با نام، کاربرد، ورودی لازم و نسخه‌بندی ذخیره کند.',
+ tp:['اجزای یک پرامپت روشن: زمینه، نقش، هدف و خروجی','تعریف مخاطب، لحن، محدودیت و فرمت پاسخ','دادن نمونه و مرجع به مدل','پرامپت‌نویسی برای کپشن، ایده، استوری و سناریو','اصلاح خروجی با بازخورد مشخص','ساخت پرامپت‌های قابل استفاده مجدد و کتابخانه پرامپت','تشخیص درخواست‌های ناقص و واداشتن مدل به پرسیدن سؤال'],
+ w:'یک موضوع واحد برای سه نوع پیج آموزشی، فروشگاهی و شخصی پرامپت‌نویسی می‌شود. خروجی‌ها مقایسه و با معیارهایی مثل دقت، تناسب با مخاطب، لحن و قابلیت انتشار امتیازدهی می‌شوند.',
+ o:'بانک اولیه ۲۰ پرامپت دسته‌بندی‌شده برای کارهای روزمره ادمین.',
+ s:['ساختار پرامپت و تعریف مسئله','نقش، مخاطب، لحن و قالب خروجی','نمونه‌دهی و گفت‌وگوی چندمرحله‌ای','اصلاح پاسخ و ارزیابی کیفیت','ساخت و مستندسازی بانک پرامپت']
+});
+LV[0].ch.push({
+ t:'تولید محتوای متنی برای اینستاگرام',
+ g:'هنرجو از ایده خام به متن قابل انتشار می‌رسد و یاد می‌گیرد از هوش مصنوعی برای سرعت‌بخشیدن به نویسندگی استفاده کند، بدون آنکه صدای برند و دقت محتوا از بین برود.',
+ d:'فصل با شناخت هدف محتوا آغاز می‌شود: آگاهی، تعامل، اعتمادسازی، آموزش یا فروش. سپس ساختار هوک، بدنه و دعوت به اقدام بررسی می‌شود. هنرجو برای کپشن، پست چنداسلایدی، استوری، معرفی محصول، پاسخ به پرسش مخاطب و سناریوی کوتاه متن می‌سازد. تبدیل یک ایده به چند قالب و بازنویسی متناسب با لحن برند آموزش داده می‌شود. نکته محوری این است که متن تولیدشده باید از نظر صحت ادعا، لحن، تکراری نبودن، خوانایی و تناسب با مخاطب ویرایش شود؛ خروجی خام مدل نسخه نهایی محسوب نمی‌شود.',
+ tp:['هدف‌گذاری محتوا و انتخاب قالب متنی','نوشتن هوک و شروع جذاب بدون وعده فریبنده','ساختار کپشن و CTA','تولید کاروسل آموزشی و متن اسلایدها','سناریوی استوری و توالی روایت','متن معرفی محصول و پاسخ به اعتراض مشتری','بازنویسی، کوتاه‌سازی، ساده‌سازی و کنترل لحن','تبدیل یک ایده به چند محتوای مکمل'],
+ w:'برای یک محصول یا خدمت واقعی، یک محتوای آموزشی، یک محتوای اعتمادساز و یک محتوای فروش طراحی می‌شود. هر سه متن باید از نظر لحن برند هماهنگ باشند اما هدف و CTA متفاوت داشته باشند.',
+ o:'یک بسته متنی شامل ۵ کپشن، ۲ کاروسل متنی، ۵ سناریوی استوری و ۳ هوک ریلز.',
+ s:['شناخت هدف محتوا و مخاطب','هوک، کپشن و دعوت به اقدام','کاروسل و استوری‌نویسی','متن تبلیغاتی و تبدیل ایده به چند قالب','ویرایش انسانی و تحویل بسته متنی']
+});
+</script>
+<script>
+LV[0].ch.push({
+ t:'تولید تصویر و طراحی محتوای بصری با گوشی',
+ g:'هنرجو تولید تصویر با AI و تبدیل آن به محتوای منظم و آماده انتشار را می‌آموزد؛ با تأکید بر وضوح پیام و ثبات هویت بصری، نه صرفاً ساخت تصویر زیبا.',
+ d:'فصل از مبانی تصویر شروع می‌کند: سوژه، قاب، زاویه دید، نور، رنگ، فضای خالی، نسبت تصویر و جای‌گذاری متن. سپس تفاوت تولید تصویر از متن، ویرایش تصویر مرجع و ترکیب چند مرجع توضیح داده می‌شود. هنرجو پرامپت تصویری می‌نویسد، خروجی‌ها را مقایسه می‌کند و تصویر مناسب را در ابزار طراحی موبایلی به پست، استوری یا کاور تبدیل می‌کند. محدودیت تولید متن فارسی داخل تصویر، خطای دست و جزئیات، شباهت به افراد واقعی و حق استفاده تجاری بررسی می‌شود. برای تصاویر محصول، کنترل وفاداری به خود محصول اصل اساسی است.',
+ tp:['مبانی سواد بصری و ترکیب‌بندی برای موبایل','Text-to-Image و Image-to-Image','نوشتن توصیف سوژه، محیط، نور و کادر','انتخاب نسبت تصویر برای پست، استوری و ریلز','استفاده از تصویر مرجع و اصلاح خروجی','طراحی کاور، پست و استوری در اپلیکیشن موبایل','حفظ رنگ، فونت و نشانه‌های هویت برند','کنترل خطا، واقع‌نمایی و حقوق تصویر'],
+ w:'برای یک کسب‌وکار، سه تصویر هماهنگ تولید و به یک پست، یک استوری و یک کاور ریلز تبدیل می‌شود. سپس با یک چک‌لیست، خوانایی، تناسب با برند و صحت نمایش محصول بررسی می‌شود.',
+ o:'مینی‌کیت بصری شامل ۶ تصویر هماهنگ و ۳ خروجی آماده انتشار موبایلی.',
+ s:['مبانی تصویر و پرامپت تصویری','تولید تصویر و استفاده از مرجع','انتخاب و اصلاح خروجی','طراحی در اپلیکیشن موبایل','ساخت مینی‌کیت و کنترل کیفیت']
+});
+LV[0].ch.push({
+ t:'تولید صوت و ویدئوی کوتاه با گوشی',
+ g:'هنرجو فرایند ساخت محتوای ویدئویی کوتاه را از ایده و سناریو تا ضبط، تدوین، زیرنویس و خروجی نهایی می‌شناسد و از AI در مراحل مناسب کمک می‌گیرد.',
+ d:'در این فصل، ویدئو به‌عنوان مجموعه‌ای از تصمیم‌های روایی و فنی آموزش داده می‌شود. ابتدا هدف و ساختار ریلز، پلان‌بندی ساده، ریتم، شروع، انتقال و پایان بررسی می‌شود. سپس ابزارهای تبدیل متن به گفتار، گفتار به متن، پاک‌سازی صدا، زیرنویس و کمک‌تدوین معرفی می‌شوند. هنرجو یاد می‌گیرد ویدئوی واقعی با گوشی ضبط کند و در صورت نیاز از تصویر یا صدای تولیدشده با AI استفاده کند. خروجی نهایی از نظر نسبت تصویر، وضوح صدا، زیرنویس، حق استفاده از موسیقی و تصاویر و خوانایی در صفحه موبایل بررسی می‌شود.',
+ tp:['ساختار ریلز و روایت کوتاه','نوشتن سناریو و تبدیل آن به پلان','ضبط ویدئو با گوشی: قاب، نور و صدا','تبدیل متن به گفتار و گفتار به متن','زیرنویس خودکار و اصلاح خطاهای فارسی','تولید یا تکمیل تصویر و ویدئو با ابزارهای AI','تدوین موبایلی، ریتم و خروجی مناسب شبکه اجتماعی','حق استفاده از موسیقی، تصویر و صدای اشخاص'],
+ w:'ساخت یک ریلز ۳۰ تا ۴۵ ثانیه‌ای برای معرفی یک خدمت؛ شامل سناریو، پلان‌بندی، ضبط با گوشی، زیرنویس، تدوین و خروجی نهایی.',
+ o:'یک ویدئوی کوتاه آماده انتشار به‌همراه سناریو، فایل زیرنویس و فهرست دارایی‌های استفاده‌شده.',
+ s:['ساختار روایت و سناریوی ویدئو','ضبط موبایلی و آماده‌سازی صدا','ابزارهای صوتی و زیرنویس هوشمند','تدوین و تکمیل ویدئو','تحویل ریلز و کنترل فنی']
+});
+LV[0].ch.push({
+ t:'مدیریت روزانه پیج و ارتباط با مخاطب',
+ g:'این فصل مهارت‌های تولید محتوا را به عملیات روزانه ادمین وصل می‌کند: برنامه‌ریزی، پاسخ‌گویی، دسته‌بندی درخواست‌ها و هماهنگی با صاحب کسب‌وکار.',
+ d:'ادمین فقط منتشرکننده پست نیست؛ مسئول حفظ نظم ارتباطی و اجرای فرایندهای توافق‌شده است. هنرجو چرخه روزانه پیج را می‌شناسد: بررسی پیام‌ها و کامنت‌ها، تشخیص موارد فوری، پاسخ به سؤال‌های پرتکرار، ثبت درخواست مشتری، ارجاع موارد حساس و گزارش‌دهی. AI می‌تواند پیش‌نویس پاسخ و دسته‌بندی پیام‌ها را انجام دهد، اما تصمیم نهایی درباره شکایت، قیمت، وعده خدمات، موضوعات حساس و اطلاعات شخصی باید طبق دستورالعمل کسب‌وکار و با نظارت انسان باشد. آشنایی مقدماتی با ابزارهای رسمی مدیریت حساب و زمان‌بندی نیز ارائه می‌شود؛ قابلیت‌ها با توجه به نوع حساب و منطقه ممکن است متفاوت باشند.',
+ tp:['وظایف روزانه و هفتگی ادمین','طراحی بانک پاسخ‌های پرتکرار','دسته‌بندی پیام‌ها و اولویت‌بندی درخواست‌ها','پاسخ حرفه‌ای، لحن برند و مدیریت شکایت','ثبت سرنخ و انتقال درخواست به فروش یا پشتیبانی','تقویم انتشار و ابزارهای رسمی مدیریت پیج','مرزهای پاسخ‌گویی خودکار و نیاز به مداخله انسان','امنیت حساب و مدیریت دسترسی تیم'],
+ w:'ساخت بانک پاسخ برای ۱۵ سؤال پرتکرار یک پیج و طراحی جدول ثبت پیام‌ها با ستون‌های موضوع، اولویت، وضعیت، مسئول و اقدام بعدی.',
+ o:'راهنمای پاسخ‌گویی پیج + بانک سؤالات پرتکرار + جدول ساده پیگیری درخواست‌ها.',
+ s:['طراحی چرخه کاری ادمین','ساخت بانک پاسخ و لحن ارتباطی','دسته‌بندی پیام و درخواست','ابزارهای مدیریت پیج و زمان‌بندی','تمرین سناریوهای ارتباطی و ارزیابی']
+});
+LV[0].ch.push({
+ t:'تقویم محتوایی، تحلیل پایه و پروژه نهایی',
+ g:'در فصل پایانی هنرجو اجزای دوره را در یک پروژه منسجم به کار می‌گیرد: شناخت پیج، برنامه‌ریزی، تولید محتوا، انتشار و ارزیابی اولیه.',
+ d:'هنرجو با هدف کسب‌وکار و مخاطب شروع می‌کند، ستون‌های محتوا را تعریف می‌کند و آن‌ها را در تقویم ۳۰ روزه می‌چیند. سپس با شاخص‌هایی مانند دسترسی، بازدید، ذخیره، اشتراک‌گذاری، تعامل، بازدید پروفایل و اقدام مخاطب آشنا می‌شود. هدف، حفظ کردن فرمول‌ها نیست؛ هنرجو باید بفهمد هر شاخص به کدام سؤال پاسخ می‌دهد و چه تصمیمی می‌توان از آن گرفت. AI برای خلاصه‌سازی گزارش‌ها، دسته‌بندی محتوا و پیشنهاد فرضیه استفاده می‌شود، اما اعداد و نتیجه‌گیری‌ها باید از داده واقعی پیج استخراج شوند.',
+ tp:['تعریف هدف ماهانه و ستون‌های محتوایی','طراحی تقویم ۳۰ روزه و توزیع قالب‌ها','آشنایی با شاخص‌های پایه Instagram Insights','تفاوت Views، Reach، تعامل و اقدام تجاری','تحلیل عملکرد چند محتوای نمونه','استفاده از AI برای خلاصه‌سازی و گزارش ساده','اصلاح تقویم بر اساس داده و بازخورد','ارائه پروژه و ارزیابی نهایی'],
+ w:'طراحی تقویم ۳۰ روزه برای یک پیج واقعی یا فرضی، تولید نمونه محتوا و ارائه گزارش تحلیلی واقعی/فرضی با تفکیک روشن میان داده واقعی و فرضیه.',
+ o:'پرونده پایه مدیریت محتوا: بریف برند، تقویم ۳۰ روزه، بانک پرامپت، نمونه پست و ریلز، بانک پاسخ و گزارش عملکرد.',
+ s:['هدف‌گذاری و ستون‌های محتوا','طراحی تقویم محتوایی','خواندن و تفسیر شاخص‌ها','تهیه گزارش و اصلاح برنامه','ارائه پروژه نهایی و بازخورد']
+});
+
+LV.push({
+ id:2,name:'پیشرفته',en:'AI Content Strategist',role:'استراتژیست محتوا',
+ sub:'از تولیدکننده محتوا تا طراح سیستم محتوایی و استراتژیست رشد',
+ meta:'۴۰ ساعت آموزش خالص | ۸ فصل | ۴۰ جلسه پیشنهادی یک‌ساعته',
+ aud:'ادمین‌های باتجربه، تولیدکنندگان محتوا، سناریونویسان، مدیران شبکه‌های اجتماعی، کارشناسان بازاریابی و صاحبان کسب‌وکار.',
+ out:['طراحی استراتژی محتوایی بر پایه اهداف کسب‌وکار و شناخت مخاطب','تحقیق ساختاریافته درباره بازار، رقبا، ترند و مسئله مخاطب','ساخت دستیارها و بانک دانش اختصاصی برای برند','تولید حرفه‌ای و چندقالبی با کنترل هویت برند','تحلیل داده، اجرای آزمون و بهینه‌سازی محتوا','مستندسازی و مدیریت تیم و فرایند تولید'],
+ equip:'گوشی هوشمند و لپ‌تاپ توصیه می‌شود. دسترسی به ابزارهای تحلیل، طراحی و تدوین، فضای ذخیره‌سازی ابری/محلی و فایل‌های نمونه یک برند لازم است. برخی کارگاه‌ها با نسخه وب ابزارها اجرا می‌شوند.',
+ ch:[]
+});
+LV[1].ch.push({
+ t:'استراتژی محتوا و معماری برند در شبکه‌های اجتماعی',
+ g:'این فصل به‌جای شروع از ابزار، از مسئله کسب‌وکار آغاز می‌کند. هنرجو یاد می‌گیرد هدف تجاری را به نقش محتوا، پیام برند و شاخص‌های قابل سنجش تبدیل کند.',
+ d:'استراتژی محتوا تعیین می‌کند برای چه کسی، با چه وعده‌ای، در چه قالبی و با چه هدفی محتوا تولید می‌کنیم. هنرجو با تحلیل وضعیت فعلی برند، ارزش پیشنهادی، موقعیت رقابتی، مخاطبان و مسیر تصمیم‌گیری مشتری، ستون‌های محتوایی را تعریف می‌کند. تفاوت محتوا برای آگاهی، بررسی، اعتمادسازی، تبدیل و حفظ مشتری بررسی می‌شود. سپس معماری پیام برند، لحن، خطوط قرمز و نسبت محتوای آموزشی، سرگرم‌کننده، اجتماعی و فروش طراحی می‌شود. AI برای تحلیل اولیه و ساخت گزینه‌ها به کار می‌رود، اما استراتژی نهایی باید با واقعیت کسب‌وکار و شواهد بازار سنجیده شود.',
+ tp:['تحلیل کسب‌وکار و هدف‌گذاری محتوایی','ارزش پیشنهادی و جایگاه‌یابی برند','تقسیم‌بندی مخاطب و طراحی پرسونای کاربردی','مسیر تصمیم‌گیری و قیف محتوایی','ستون‌های محتوا و معماری پیام','هویت کلامی، لحن و راهنمای برند','انتخاب KPI و طراحی نقشه محتوایی چندکاناله'],
+ w:'ساخت سند استراتژی برای یک کسب‌وکار شامل هدف، مخاطب، ارزش پیشنهادی، ستون‌های محتوا، لحن، قالب‌ها و KPI. سپس بررسی می‌شود کدام بخش را AI پیشنهاد داده و کدام بخش با شواهد انسانی تأیید شده است.',
+ o:'سند استراتژی محتوایی یک برند با نقشه پیام و معیارهای سنجش.',
+ s:['تحلیل کسب‌وکار و هدف محتوا','مخاطب، پرسونا و مسیر مشتری','جایگاه‌یابی و معماری پیام','ستون محتوا و شاخص‌های موفقیت','تدوین و ارائه سند استراتژی']
+});
+LV[1].ch.push({
+ t:'تحقیق بازار، تحلیل رقبا و کشف فرصت محتوایی',
+ g:'هنرجو می‌آموزد ایده‌های محتوایی را از تحقیق واقعی استخراج کند و بین ترند، داده، نظر شخصی و شایعه تفاوت بگذارد.',
+ d:'تحقیق محتوایی از یک سؤال روشن شروع می‌شود. هنرجو یاد می‌گیرد منابع مناسب را انتخاب کند، اطلاعات را ثبت کند و یافته‌ها را بر اساس اعتبار، تازگی و ارتباط با مخاطب ارزیابی کند. تحلیل رقبا بر پایه مشاهده ساختاریافته است: موضوع، قالب، ارزش پیشنهادی، واکنش مخاطب و تکرار الگوها. برای کشف ترند، علاوه بر شبکه‌های اجتماعی از جست‌وجو، کامنت‌ها، پرسش‌های مشتریان و داده‌های خود کسب‌وکار استفاده می‌شود. AI در خلاصه‌سازی، خوشه‌بندی و پیشنهاد فرضیه کمک می‌کند؛ اما منبع و تاریخ داده باید ثبت شود و ادعای بدون منبع وارد محتوا نشود.',
+ tp:['تعریف سؤال تحقیق و طراحی روش جمع‌آوری داده','جست‌وجوی وب و ارزیابی اعتبار منبع','تحلیل ساختاریافته رقبا و نمونه‌های موفق','استخراج مسئله از کامنت‌ها و پرسش‌های مشتری','کشف ترند و تشخیص عمر و تناسب آن','خوشه‌بندی موضوعات و ساخت نقشه فرصت','استفاده از AI برای خلاصه‌سازی همراه با ثبت منبع','پرهیز از داده‌سازی و تعمیم بی‌پشتوانه'],
+ w:'تحلیل سه رقیب و صدای مخاطبان یک حوزه؛ استخراج ۲۰ سؤال یا مسئله پرتکرار و تبدیل آن‌ها به ماتریس ایده با امتیاز تناسب، تازگی و امکان تولید.',
+ o:'گزارش تحقیق محتوا، جدول رقبا، بانک مسئله مخاطب و ماتریس فرصت‌های محتوایی.',
+ s:['طراحی سؤال تحقیق و یافتن منابع','تحلیل رقبا و نمونه‌برداری محتوا','تحلیل کامنت‌ها و صدای مخاطب','کشف ترند و خوشه‌بندی فرصت‌ها','تهیه گزارش و بانک ایده مستند']
+});
+LV[1].ch.push({
+ t:'پرامپت پیشرفته، دستیار اختصاصی و بانک دانش برند',
+ g:'هنرجو از پرامپت‌های منفرد فراتر می‌رود و برای یک برند، دستیارهای تخصصی با دستورالعمل، فایل مرجع و معیار کنترل کیفیت می‌سازد.',
+ d:'در این فصل مهندسی پرامپت به طراحی سیستم تبدیل می‌شود. هنرجو دستورهای سیستمی، ورودی‌های استاندارد، مثال‌های مثبت و منفی، قالب‌های خروجی و معیارهای ارزیابی را تعریف می‌کند. سپس نقش‌های تخصصی مانند دستیار ایده‌پرداز، ویراستار، پژوهشگر، سناریونویس یا تحلیلگر محتوا طراحی می‌شوند. اسناد برند، پرسش‌های متداول، کاتالوگ و نمونه محتوا به‌عنوان منبع دانش آماده‌سازی می‌شوند. تفاوت اتکا به حافظه مکالمه با رجوع به منبع مستند روشن می‌شود. کنترل نسخه، آزمون با ورودی‌های متنوع و ثبت خطاها بخش اصلی این فصل است.',
+ tp:['دستور سیستمی و طراحی نقش‌های تخصصی','Prompt Chaining و تقسیم وظیفه به مراحل','نمونه‌های مرجع و معیارهای پذیرش خروجی','ساخت دستیار اختصاصی در ابزارهای موجود','آماده‌سازی اسناد برند و بانک دانش','طراحی پاسخ ساختاریافته و قالب ثابت','آزمون، نسخه‌بندی و کنترل خطای دستیار'],
+ w:'ساخت یک دستیار برند که از روی راهنمای لحن، اطلاعات محصول و پرسش‌های پرتکرار، پیش‌نویس کپشن تولید کند و در صورت نبود داده کافی، به‌جای حدس زدن سؤال بپرسد.',
+ o:'دستیار اختصاصی برند + مجموعه دستورهای سیستمی + بانک دانش مرتب و نسخه‌بندی‌شده.',
+ s:['طراحی دستور سیستمی و نقش','زنجیره‌سازی پرامپت و قالب خروجی','ساخت و آماده‌سازی بانک دانش','ساخت دستیار اختصاصی و تست آن','ارزیابی، اصلاح و مستندسازی']
+});
+LV[1].ch.push({
+ t:'نویسندگی پیشرفته، کمپین و روایت چندقالبی',
+ g:'این فصل تمرکز را از تولید پست‌های پراکنده به ساخت مجموعه‌های پیوسته و کمپین‌های دارای پیام، روایت و هدف مشخص منتقل می‌کند.',
+ d:'هنرجو معماری کمپین را از پیام مرکزی تا توالی محتوا طراحی می‌کند. اصول روایت، تنش و حل مسئله، سری‌سازی، شخصیت برند و تبدیل محتوای بلند به قطعات کوتاه بررسی می‌شود. AI برای توسعه زاویه‌های مختلف، تولید نسخه‌های جایگزین و تطبیق پیام با قالب‌های گوناگون به کار می‌رود. همچنین طراحی محتوای فروش، معرفی محصول، اعتراض‌زدایی، پیشنهاد ارزش و دعوت به اقدام آموزش داده می‌شود. کنترل تکرار، صحت ادعاها، هماهنگی میان کانال‌ها و تمایز لحن هر پلتفرم ضروری است.',
+ tp:['معماری کمپین و پیام مرکزی','روایت، قصه‌گویی کاربردی و سری محتوایی','تولید سناریوی ریلز و ویدئوی بلند','طراحی کاروسل، ایمیل، پست و استوری از یک ایده','کپی‌رایتینگ فروش و پاسخ به اعتراض','تولید نسخه‌های مختلف برای آزمون A/B','حفظ انسجام پیام در چند کانال'],
+ w:'طراحی کمپین هفت‌روزه برای عرضه یک محصول: پیام مرکزی، توالی پست و استوری، سناریوی ریلز، نسخه‌های تبلیغاتی و CTAهای متناسب با مراحل مخاطب.',
+ o:'پرونده کمپین شامل پیام مرکزی، تقویم، سناریوها، کپشن‌ها و نسخه‌های جایگزین.',
+ s:['طراحی پیام و ساختار کمپین','روایت و سری‌سازی محتوا','تولید محتوای فروش و تبلیغاتی','بازآفرینی محتوا برای قالب‌ها و کانال‌ها','بازبینی و ارائه کمپین']
+});
+</script>
+<script>
+LV[1].ch.push({
+ t:'طراحی بصری پیشرفته و ثبات هویت تصویری',
+ g:'هنرجو یاد می‌گیرد به‌جای تصویرهای منفرد و ناهماهنگ، یک زبان بصری قابل تکرار برای برند و کمپین بسازد.',
+ d:'فصل از راهنمای بصری برند، پالت رنگ، تایپوگرافی، ترکیب‌بندی و قواعد تصویر شروع می‌شود. سپس استفاده از تصاویر مرجع، کنترل زاویه و نور، ساخت مجموعه تصاویر هماهنگ و ویرایش ناحیه‌ای بررسی می‌شود. ابزارهای تولید تصویر برای پیش‌نمونه‌سازی، تصویرسازی مفهومی، تصویر محصول و دارایی‌های تبلیغاتی به کار می‌روند. هنرجو با محدودیت ثبات چهره و جزئیات آشنا می‌شود و روش‌های کنترل کیفیت و انتخاب خروجی را تمرین می‌کند. در پایان، بسته‌ای از دارایی‌های بصری برای چند قالب و نسبت تصویر آماده می‌شود.',
+ tp:['تبدیل راهنمای برند به سیستم بصری قابل اجرا','تصویر مرجع و حفظ عناصر ثابت','Inpainting و Outpainting در سطح کاربردی','ساخت مجموعه تصاویر هماهنگ برای کمپین','تصویرسازی محصول و کنترل وفاداری','طراحی کاروسل و کاورهای چندقالبی','مدیریت فایل‌های منبع، نسخه و مجوز استفاده'],
+ w:'ساخت یک کیت تصویری برای کمپین شامل تصویر اصلی، تصاویر مکمل، کاور ریلز، پس‌زمینه استوری و قالب کاروسل؛ همه با یک زبان بصری واحد.',
+ o:'راهنمای کوتاه هویت بصری + بسته دارایی تصویری چندقالبی.',
+ s:['سیستم بصری و راهنمای برند','تصاویر مرجع و کنترل عناصر','ویرایش و ساخت تصاویر مکمل','تولید دارایی‌های کمپین','کنترل کیفیت و تحویل کیت']
+});
+LV[1].ch.push({
+ t:'ویدئو، صدا و بازآفرینی حرفه‌ای محتوا',
+ g:'این فصل به هنرجو کمک می‌کند محتوای ویدئویی را به یک فرایند تولید برنامه‌ریزی‌شده تبدیل کند و از یک دارایی اصلی، چند خروجی مناسب پلتفرم‌های مختلف بسازد.',
+ d:'هنرجو با پیش‌تولید، استوری‌بورد، فهرست نماها، انتخاب سبک بصری و مدیریت دارایی‌های صوتی و تصویری آشنا می‌شود. استفاده از ابزارهای AI برای پاک‌سازی صدا، زیرنویس، دوبله، ترجمه و تولید نماهای تکمیلی بررسی می‌شود. سپس بازآفرینی محتوا آموزش داده می‌شود: یک مصاحبه یا ویدئوی بلند چگونه به ریلز، کلیپ، نقل‌قول، کاروسل و متن تبدیل می‌شود. بخش مهم، حفظ معنا و زمینه هنگام کوتاه‌سازی و ترجمه است. خروجی‌ها با توجه به استاندارد هر پلتفرم بازبینی می‌شوند.',
+ tp:['استوری‌بورد و طراحی پیش‌تولید','مدیریت صدا، گفتار و زیرنویس','دوبله، ترجمه و بومی‌سازی محتوا','ساخت کلیپ‌های کوتاه از ویدئوی بلند','بازآفرینی برای Reels، Shorts، TikTok و سایر کانال‌ها','کنترل پیوستگی بصری و معنایی','مدیریت فایل و مجوز دارایی‌های صوتی و ویدئویی'],
+ w:'از یک ویدئوی مصاحبه یا آموزشی، سه کلیپ عمودی، یک کاروسل خلاصه و یک کپشن تولید می‌شود؛ سپس صحت نقل‌قول‌ها و حفظ مفهوم در نسخه‌های کوتاه کنترل می‌شود.',
+ o:'بسته بازآفرینی یک محتوای بلند به حداقل پنج خروجی مکمل.',
+ s:['طراحی پیش‌تولید و استوری‌بورد','ابزارهای صوتی و زیرنویس','تدوین و انتخاب نماها','بازآفرینی چندقالبی و چندپلتفرمی','بازبینی، خروجی و تحویل']
+});
+LV[1].ch.push({
+ t:'تحلیل داده، آزمایش و بهینه‌سازی رشد',
+ g:'هنرجو از قضاوت بر اساس لایک یا حس شخصی فاصله می‌گیرد و می‌آموزد عملکرد محتوا را با سؤال درست، داده معتبر و آزمون قابل تفسیر بررسی کند.',
+ d:'ابتدا شاخص‌ها بر اساس هدف دسته‌بندی می‌شوند: دیده‌شدن، توجه، تعامل، قصد خرید و تبدیل. سپس داده‌های اینستاگرام و سایر شبکه‌ها جمع‌آوری و در یک قالب ثابت ثبت می‌شوند. هنرجو یاد می‌گیرد مقایسه را در بازه‌های همسان و با توجه به نوع محتوا انجام دهد. طراحی فرضیه، آزمون دو نسخه، کنترل متغیرها و خواندن نتایج آموزش داده می‌شود. AI می‌تواند الگوها را خلاصه و سؤال‌های بعدی پیشنهاد کند، اما نباید از داده محدود رابطه علت و معلولی قطعی بسازد. در پایان داشبورد و گزارش مدیریتی طراحی می‌شود.',
+ tp:['انتخاب KPI بر اساس هدف کسب‌وکار','تحلیل Saves، Watch Time، Views، Reach و Shares','تحلیل مسیر تبدیل و شاخص‌های کسب‌وکار','طراحی آزمایش و آزمون A/B','ساخت داشبورد و پاک‌سازی داده','استفاده از AI برای خوشه‌بندی و خلاصه‌سازی','تشخیص همبستگی از رابطه علت و معلولی','گزارش‌نویسی و پیشنهاد اقدام بعدی'],
+ w:'تحلیل یک مجموعه داده نمونه از عملکرد محتوا، طرح دو فرضیه بهبود و طراحی آزمایش ساده برای بررسی آن‌ها. هنرجو باید محدودیت داده را هم در گزارش خود ذکر کند.',
+ o:'داشبورد ساده عملکرد + گزارش تحلیلی + برنامه آزمایش و بهینه‌سازی.',
+ s:['شاخص‌ها و طراحی سؤال تحلیلی','پاک‌سازی داده و داشبورد','فرضیه‌سازی و آزمون A/B','تحلیل نتایج با کمک AI','گزارش مدیریتی و برنامه اقدام']
+});
+LV[1].ch.push({
+ t:'مدیریت تیم، فرایند تولید و پروژه نهایی',
+ g:'این فصل دانش فردی را به سیستم کاری قابل واگذاری تبدیل می‌کند تا چند نفر بتوانند با کیفیت و استاندارد یکسان روی چند پیج یا پروژه کار کنند.',
+ d:'هنرجو نقش‌ها، مسئولیت‌ها، مسیر تأیید و تحویل را تعریف می‌کند. برای کارهای تکراری دستورالعمل اجرایی استاندارد (SOP)، چک‌لیست کنترل کیفیت، فرم بریف، تقویم تولید و الگوی گزارش طراحی می‌شود. مدیریت نسخه‌ها، بازخورد کارفرما، زمان و هزینه تولید و اولویت‌بندی وظایف نیز آموزش داده می‌شود. در پروژه پایانی، هنرجو یک سیستم محتوایی را از دریافت بریف تا انتشار و تحلیل طراحی و مستند می‌کند. تأکید این است که فرایند باید قابل فهم و قابل اجرا برای عضو جدید تیم باشد.',
+ tp:['تقسیم نقش و مسئولیت تیم محتوایی','طراحی SOP و چک‌لیست اجرایی','فرایند بریف، ایده، تولید، بازبینی و انتشار','کنترل نسخه و مدیریت دارایی‌ها','مدیریت زمان، هزینه و ظرفیت تولید','بازخورد کارفرما و فرایند اصلاح','گزارش‌دهی و کنترل کیفیت','ارائه پروژه جامع'],
+ w:'طراحی گردش‌کار ماهانه یک تیم کوچک برای دو پیج؛ شامل نقش‌ها، فرم بریف، مراحل تأیید، چک‌لیست انتشار و گزارش پایان ماه.',
+ o:'بسته عملیاتی تیم شامل SOP، فرم‌ها، تقویم، ماتریس مسئولیت و گزارش مدیریتی.',
+ s:['طراحی ساختار تیم و نقش‌ها','مستندسازی SOP و چک‌لیست','مدیریت پروژه و کنترل نسخه','ساخت سیستم عملیاتی چندپیجی','ارائه پروژه نهایی و ارزیابی']
+});
+
+LV.push({
+ id:3,name:'فوق‌پیشرفته',en:'AI Automation Architect',role:'معمار اتوماسیون AI',
+ sub:'از ابزارهای مستقل تا معماری گردش‌کار، ایجنت و مدل‌های لوکال',
+ meta:'۴۰ ساعت آموزش خالص | ۸ فصل | ۴۰ جلسه پیشنهادی یک‌ساعته',
+ aud:'مدیران فنی محتوا، اپراتورهای اتوماسیون، کارشناسان دیجیتال مارکتینگ و افراد علاقه‌مند به ساخت سامانه‌های هوشمند؛ آشنایی قبلی با کار حرفه‌ای محتوا و مهارت پایه کامپیوتر ضروری است.',
+ out:['درک Webhook، JSON، HTTP، API و مدل احراز هویت','ساخت گردش‌کارهای پایدار در n8n','اتصال حساب‌های حرفه‌ای و سرویس‌های مجاز به گردش‌کارها','اتصال مدل‌های ابری و محلی به خط تولید محتوا','اجرای مدل زبانی محلی و درک محدودیت سخت‌افزار','ساخت گردش‌کار تولید تصویر در ComfyUI','طراحی RAG و ایجنت با ابزار، حافظه و کنترل انسانی','ارائه یک سامانه یکپارچه با ثبت گزارش، امنیت و بازیابی خطا'],
+ equip:'لپ‌تاپ/کامپیوتر ضروری است. برای n8n و API، اینترنت پایدار و حساب‌های آزمایشی لازم است. اجرای مدل محلی به RAM، فضای دیسک و در برخی کارها VRAM/GPU وابسته است؛ انتخاب مدل باید بر اساس سخت‌افزار واقعی هنرجو انجام شود. سرور ابری اختیاری و در بخش استقرار معرفی می‌شود.',
+ ch:[]
+});
+LV[2].ch.push({
+ t:'مبانی فنی: JSON، HTTP، API و امنیت اتصال',
+ g:'این فصل الفبای فنی لازم برای اتصال ابزارها را آموزش می‌دهد. هدف، تبدیل هنرجو به برنامه‌نویس حرفه‌ای نیست؛ هدف این است که بتواند مستندات API را بخواند، درخواست ساده را بفهمد و عیب‌های معمول اتصال را تشخیص دهد.',
+ d:'هنرجو با مفهوم سرویس، کلاینت و سرور، درخواست و پاسخ HTTP، متدهای متداول، کدهای وضعیت و ساختار JSON آشنا می‌شود. سپس API Key، توکن دسترسی، OAuth در سطح مفهومی، مجوزها و حداقل‌سازی دسترسی معرفی می‌شود. Webhook به‌عنوان راه دریافت رویداد از سرویس دیگر توضیح داده می‌شود و تفاوت آن با درخواست زمان‌بندی‌شده روشن می‌گردد. در پایان، خواندن مستندات، تست درخواست در ابزارهای ساده و محافظت از کلیدها تمرین می‌شود. رمزها و توکن‌ها هرگز نباید در اسکرین‌شات عمومی، فایل آموزشی یا کد منتشرشده قرار گیرند.',
+ tp:['معماری ساده کلاینت، سرور و سرویس','HTTP: متدها، Header، Body و Status Code','ساختار JSON و انواع داده','API و تفاوت آن با رابط کاربری آماده','API Key، Bearer Token و OAuth در سطح کاربردی','Webhook و رویدادهای ورودی','خواندن مستندات و تست درخواست','مدیریت اسرار، دسترسی حداقلی و حریم خصوصی'],
+ w:'ارسال یک درخواست آزمایشی به API عمومی یا محیط تست، خواندن پاسخ JSON، استخراج چند فیلد و بررسی خطاهای ۴۰۰، ۴۰۱، ۴۰۳ و ۵۰۰ در سناریوهای آموزشی.',
+ o:'برگه فنی اتصال شامل آدرس سرویس، روش احراز هویت، نمونه ورودی/خروجی و چک‌لیست نگهداری امن کلیدها.',
+ s:['مفهوم API و معماری درخواست/پاسخ','HTTP و کدهای وضعیت','JSON و ساختار داده','توکن، مجوز و Webhook','تست درخواست و اصول امنیت اتصال']
+});
+</script>
+<script>
+LV[2].ch.push({
+ t:'اتوماسیون با n8n و طراحی Workflow پایدار',
+ g:'هنرجو یاد می‌گیرد چند ابزار را در یک گردش‌کار قابل مشاهده و قابل نگهداری به هم متصل کند؛ از Trigger و شرط تا پردازش داده، مدیریت خطا و گزارش اجرا.',
+ d:'n8n به‌عنوان ابزار اتصال سرویس‌ها و خودکارسازی فرایندها معرفی می‌شود. هنرجو ساختار Node، Workflow، Credential و Execution را می‌شناسد و با Triggerهای دستی، زمان‌بندی و Webhook کار می‌کند. سپس داده بین گره‌ها منتقل و با شرط، تبدیل، فیلتر، تکرار و دسته‌بندی پردازش می‌شود. طراحی خطا و بازیابی از همان ابتدا آموزش داده می‌شود: چه زمانی اجرای مجدد امن است، چگونه از اجرای تکراری جلوگیری کنیم و کجا لازم است فرایند متوقف و به انسان ارجاع شود. انتخاب میان نسخه ابری و میزبانی شخصی از منظر هزینه، نگهداری و امنیت بررسی می‌شود.',
+ tp:['مفهوم Workflow، Node، Connection و Execution','نصب و راه‌اندازی آزمایشی و گزینه‌های میزبانی','Trigger دستی، زمان‌بندی و Webhook','اتصال سرویس‌ها و تنظیم Credential','شرط‌گذاری، Switch، فیلتر و تبدیل داده','تکرار و پردازش گروهی','مدیریت خطا، Retry و جلوگیری از اجرای تکراری','ثبت گزارش و نگهداری Workflow'],
+ w:'ساخت جریان دریافت فرم بریف، اعتبارسنجی داده، ثبت آن در جدول، ارسال اعلان و ثبت وضعیت. سپس عمداً یک خطا ایجاد و روش بازیابی و گزارش آن اجرا می‌شود.',
+ o:'سه Workflow مستند: دریافت ورودی، پردازش و اعلان؛ همراه با مدیریت خطا و راهنمای نگهداری.',
+ s:['شناخت محیط و اجزای Workflow','Triggerها و دریافت ورودی','پردازش، شرط و اتصال سرویس‌ها','خطا، Retry و جلوگیری از تکرار','ساخت و مستندسازی پروژه اتوماسیون']
+});
+LV[2].ch.push({
+ t:'اتصال رسمی اینستاگرام و اتوماسیون عملیات پیج',
+ g:'این فصل راه ارتباط قانونی و فنی یک سیستم اتوماسیون با حساب حرفه‌ای اینستاگرام را توضیح می‌دهد و مرزهای API رسمی را از روش‌های غیرمجاز یا ناپایدار جدا می‌کند.',
+ d:'هنرجو با اکوسیستم توسعه‌دهندگان Meta، تفاوت مسیرهای ورود و دسترسی، حساب‌های حرفه‌ای، مجوزهای لازم، توکن‌ها و فرایند بررسی برنامه آشنا می‌شود. قابلیت‌هایی مانند دریافت داده، مدیریت کامنت، پیام‌رسانی و انتشار محتوا در حدی آموزش داده می‌شوند که برای هر کدام پیش‌نیاز، محدودیت حساب، مجوز و سیاست پلتفرم مشخص باشد. طراحی سیستم باید به‌گونه‌ای باشد که در صورت نداشتن مجوز یا خارج بودن درخواست از محدوده مجاز، عملیات انجام نشود و مسیر جایگزین انسانی فعال شود. هیچ‌گونه دور زدن محدودیت، جمع‌آوری غیرمجاز اطلاعات یا استفاده از روش‌های شکننده مبتنی بر رمز عبور آموزش داده نمی‌شود.',
+ tp:['شناخت Meta for Developers و ساخت برنامه آزمایشی','حساب حرفه‌ای و تفاوت مسیرهای مجاز اتصال','مجوزها، توکن‌ها و فرایند App Review','مبانی Instagram API و Webhookهای مرتبط','مدیریت کامنت و پیام در محدوده مجوزها','قابلیت‌های انتشار و محدودیت قالب/حساب','طراحی مسیر ارجاع به اپراتور انسانی','سیاست پلتفرم، حریم خصوصی و ثبت رضایت'],
+ w:'طراحی یک Workflow شبیه‌سازی‌شده برای ثبت کامنت، دسته‌بندی موضوع، ساخت پیش‌نویس پاسخ و ارجاع به اپراتور؛ اتصال زنده فقط در حساب آزمایشی و با مجوزهای رسمی انجام می‌شود.',
+ o:'نقشه اتصال رسمی + ماتریس قابلیت/مجوز/محدودیت + نمونه گردش‌کار تأییدشده توسط انسان.',
+ s:['اکوسیستم Meta و مسیرهای اتصال','مجوزها، توکن و تنظیم برنامه','شناخت قابلیت‌های API و محدودیت‌ها','طراحی Workflow برای کامنت و پیام','آزمون، ارزیابی امنیت و کنترل انسانی']
+});
+LV[2].ch.push({
+ t:'اتصال مدل‌های هوش مصنوعی و ساخت خط پردازش محتوا',
+ g:'هنرجو مدل AI را به بخشی از یک گردش‌کار تبدیل می‌کند؛ با ورودی استاندارد، خروجی قابل پردازش، کنترل کیفیت و مرحله تأیید انسانی.',
+ d:'در این فصل اتصال مدل‌های ابری از طریق API و انتخاب مدل مناسب برای وظیفه آموزش داده می‌شود. هنرجو تفاوت تولید متن، تحلیل تصویر، استخراج داده و فراخوانی ابزار را می‌شناسد. خروجی ساختاریافته مانند JSON برای اینکه مراحل بعدی بتوانند نتیجه را مصرف کنند، تمرین می‌شود. سپس یک زنجیره طراحی می‌شود: دریافت بریف، استخراج اطلاعات، تولید ایده، پیش‌نویس سناریو، کنترل قواعد برند و تحویل برای بازبینی. معیارهای کیفیت، محدودیت طول، زمان پاسخ، هزینه، مدیریت خطا و ثبت نسخه مدل باید در طراحی دیده شوند.',
+ tp:['انتخاب مدل بر اساس وظیفه، کیفیت و هزینه','اتصال API مدل به n8n','پیام سیستم و جداسازی دستور از داده کاربر','خروجی ساختاریافته JSON و اعتبارسنجی','دسته‌بندی، استخراج اطلاعات و خلاصه‌سازی','Function Calling و استفاده محدود از ابزارها','طراحی زنجیره چندمرحله‌ای محتوا','کنترل کیفیت، ثبت نسخه و تأیید انسانی'],
+ w:'ساخت خط تولید پیش‌نویس محتوا: ورودی بریف، استخراج هدف و مخاطب، تولید سه ایده، انتخاب یک ایده، تولید سناریو با قالب JSON و ارسال برای تأیید انسانی.',
+ o:'Workflow متصل به مدل AI با خروجی ساختاریافته، اعتبارسنجی، ثبت گزارش و مرحله تأیید.',
+ s:['اتصال مدل و انتخاب سرویس','طراحی ورودی و دستور سیستم','خروجی JSON و پردازش داده','ساخت زنجیره و فراخوانی ابزار','کنترل کیفیت و تکمیل پروژه']
+});
+LV[2].ch.push({
+ t:'مدل‌های لوکال با Ollama و LM Studio',
+ g:'هنرجو می‌آموزد مدل زبانی را روی سیستم خود اجرا کند، محدودیت سخت‌افزار را بسنجد و آن را از طریق رابط محلی به ابزارهای دیگر متصل کند.',
+ d:'مدل لوکال یعنی اجرای استنتاج روی سخت‌افزار در دسترس کاربر یا سازمان؛ این موضوع می‌تواند کنترل داده و استقلال از سرویس ابری را افزایش دهد، اما به معنی رایگان بودن، بی‌خطا بودن یا مناسب بودن برای هر کار نیست. هنرجو با خانواده مدل‌ها، حجم فایل، RAM، VRAM، Quantization، سرعت و کیفیت آشنا می‌شود. سپس Ollama و LM Studio برای دریافت، بارگذاری و اجرای مدل معرفی می‌شوند. راه‌اندازی سرور محلی و اتصال یک برنامه به API محلی تمرین می‌شود. تفاوت استفاده محلی با بازکردن سرویس روی شبکه نیز از نظر امنیت توضیح داده می‌شود.',
+ tp:['مدل باز، وزن مدل و اجرای محلی','مقایسه Cloud و Local از نظر حریم خصوصی، هزینه و کیفیت','RAM، VRAM، فضای ذخیره‌سازی و انتخاب مدل','Quantization و تأثیر آن بر حافظه و کیفیت','نصب و مدیریت مدل با Ollama','اجرای مدل و سرور محلی در LM Studio','API محلی و اتصال به n8n','محدودسازی شبکه، احراز هویت و امنیت سرویس محلی'],
+ w:'انتخاب یک مدل متناسب با سخت‌افزار هنرجو، اجرای آن، مقایسه کیفیت پاسخ در چند وظیفه محتوایی و اتصال محلی به یک Workflow ساده.',
+ o:'مدل محلی فعال + برگه ارزیابی کیفیت/سرعت/منابع + اتصال آزمایشی به n8n.',
+ s:['مبانی مدل‌های لوکال و سخت‌افزار','انتخاب و اجرای مدل در Ollama','اجرای مدل در LM Studio','API محلی و اتصال ابزارها','مقایسه خروجی و ایمن‌سازی سرویس']
+});
+LV[2].ch.push({
+ t:'ComfyUI و خط تولید تصویر محلی',
+ g:'هنرجو با محیط نودمحور ComfyUI آشنا می‌شود و یک گردش‌کار تکرارپذیر برای تولید و اصلاح تصویر می‌سازد؛ با درک تفاوت مدل، نود، Workflow و افزونه.',
+ d:'ComfyUI به‌عنوان محیطی گرافیکی و نودمحور برای طراحی جریان تولید تصویر معرفی می‌شود. هنرجو مفاهیم مدل پایه، بارگذاری، متن مثبت و منفی، نمونه‌گیری، VAE، ذخیره خروجی و مدیریت Workflow را می‌آموزد. سپس تصاویر مرجع، ماسک، inpainting و کنترل ساختار معرفی می‌شوند. LoRA به‌عنوان آداپتور سبک برای افزودن سبک یا ویژگی آموخته‌شده توضیح داده می‌شود و هنرجو می‌فهمد که نصب هر LoRA یا مدل، تضمین‌کننده نتیجه نیست و سازگاری نسخه و مدل اهمیت دارد. بخش ویدئو و مدل‌های سنگین صرفاً در حد معرفی وابستگی‌های سخت‌افزاری و ارزیابی امکان اجرا پوشش داده می‌شود.',
+ tp:['نصب و شناخت محیط ComfyUI','ساختار Node و اتصال Workflow','مدل پایه، Sampler، VAE و تنظیمات اصلی','تصویر مرجع و کنترل ساختار خروجی','Inpainting، Mask و Outpainting','مفهوم LoRA و سازگاری با مدل پایه','مدیریت فایل مدل، نسخه و Workflow','اجرای دسته‌ای و اتصال از طریق API در صورت پشتیبانی'],
+ w:'ساخت Workflow ثابت برای تولید مجموعه‌ای از تصاویر هماهنگ یک برند؛ هنرجو ورودی، تنظیمات، نسخه مدل و خروجی را ذخیره می‌کند تا تولید بعدی قابل تکرار باشد.',
+ o:'Workflow قابل اجرا و مستند ComfyUI + مجموعه تصویر نمونه + فهرست مدل‌ها و نیازمندی سخت‌افزاری.',
+ s:['آشنایی و نصب ComfyUI','ساخت اولین Workflow','مدل‌ها و کنترل تصویر','LoRA، ماسک و ویرایش ناحیه‌ای','ساخت خط تولید و مستندسازی']
+});
+LV[2].ch.push({
+ t:'RAG، پایگاه دانش و معماری ایجنت‌ها',
+ g:'هنرجو می‌آموزد چگونه دانش اختصاصی یک برند را در اختیار سیستم AI قرار دهد و ایجنتی بسازد که ابزارهای محدود و مشخصی را با کنترل و گزارش استفاده کند.',
+ d:'ابتدا تفاوت مدل زبانی، حافظه مکالمه و بازیابی دانش توضیح داده می‌شود. سپس آماده‌سازی اسناد، خردکردن متن، Embedding، پایگاه برداری و بازیابی قطعه‌های مرتبط معرفی می‌شود. در معماری RAG، مدل باید بر اساس منابع بازیابی‌شده پاسخ دهد و در صورت نبود سند کافی، عدم قطعیت را اعلام کند. سپس مفهوم Agent و تفاوت آن با Workflow ثابت بررسی می‌شود: ایجنت می‌تواند بر اساس هدف، ابزار مناسب را انتخاب کند، اما باید محدوده اختیار، سقف اقدام و شرط توقف داشته باشد. MCP در حد مفهوم استاندارد اتصال مدل به ابزار و منابع معرفی می‌شود.',
+ tp:['تفاوت RAG، حافظه و آموزش مجدد مدل','آماده‌سازی و قطعه‌بندی اسناد','Embedding و Vector Database','بازیابی، رتبه‌بندی و ارجاع به منبع','طراحی دستیار دانش‌محور برند','مفهوم Agent، Tool و Memory','محدوده اختیار، گاردریل و توقف ایمن','آشنایی مفهومی با MCP و اتصال ابزارها'],
+ w:'ساخت دستیار پرسش‌وپاسخ برای راهنمای برند و محصولات؛ پاسخ باید به سند مشخص متکی باشد و در نبود پاسخ، درخواست را به نیروی انسانی ارجاع دهد.',
+ o:'نمونه RAG متصل به اسناد برند + ایجنت محدود با ابزار مشخص و سیاست ارجاع.',
+ s:['مبانی RAG و تفاوت آن با چت ساده','آماده‌سازی اسناد و Embedding','ساخت بازیابی دانش و ارجاع منبع','طراحی Agent و ابزارهای محدود','آزمون، کنترل و مستندسازی']
+});
+LV[2].ch.push({
+ t:'معماری یکپارچه، استقرار و پروژه نهایی',
+ g:'در این فصل اجزای فنی دوره در یک سامانه منسجم قرار می‌گیرند. تمرکز بر طراحی قابل نگهداری، امنیت، گزارش‌پذیری و نقش انسان در تصمیم‌های مهم است.',
+ d:'هنرجو معماری یک خط تولید محتوا را طراحی می‌کند: دریافت بریف، ذخیره ورودی، تحقیق و پیش‌نویس توسط مدل، ساخت دارایی بصری، ارزیابی قواعد برند، تأیید انسانی، انتشار در مسیر مجاز و ثبت داده عملکرد. ارتباط میان n8n، مدل محلی یا ابری، ComfyUI، پایگاه داده و ابزار مدیریت پروژه بررسی می‌شود. سپس استقرار، متغیرهای محیطی، پشتیبان‌گیری، ثبت لاگ، کنترل دسترسی، مانیتورینگ، بازیابی خطا و مستندسازی آموزش داده می‌شود. پروژه نهایی باید در یک محیط آزمایشی قابل نمایش باشد و محدودیت‌ها و هزینه‌های نگهداری آن صادقانه گزارش شوند.',
+ tp:['طراحی معماری و مرزبندی سرویس‌ها','اتصال Workflow، مدل، پایگاه دانش و تولید تصویر','طراحی مرحله تأیید انسانی و انتشار کنترل‌شده','پایگاه داده، ثبت تاریخچه و ردیابی خروجی','استقرار محلی یا سروری در سطح مقدماتی','مدیریت کلیدها، دسترسی، پشتیبان‌گیری و لاگ','پایش خطا، محدودیت هزینه و نگهداری','آزمون نهایی و ارائه معماری'],
+ w:'ساخت نمونه سامانه‌ای که بریف را دریافت می‌کند، پیش‌نویس و دارایی تولید می‌کند، خروجی را برای تأیید انسان نگه می‌دارد و پس از تأیید، اطلاعات پروژه و وضعیت را ثبت می‌کند. اتصال انتشار واقعی فقط در صورت دسترسی و مجوز رسمی انجام می‌شود.',
+ o:'پروژه جامع اتوماسیون محتوا + نمودار معماری + راهنمای نصب و نگهداری + گزارش محدودیت‌ها و هزینه‌ها.',
+ s:['طراحی معماری و جریان داده','اتصال سرویس‌ها و ساخت نسخه آزمایشی','امنیت، لاگ و مدیریت خطا','آزمون و مستندسازی سیستم','ارائه پروژه و ارزیابی نهایی']
+});
+</script>
+
+<section class="band" id="transfer">
+  <div class="wrap">
+    <span class="eyebrow">فراتر از اینستاگرام</span>
+    <h2>چطور مهارت‌ها به شبکه‌های اجتماعی دیگر منتقل می‌شوند؟</h2>
+    <p class="sec-lead">تمرکز عملی برنامه اینستاگرام است؛ اما اصول تحقیق، پیام‌سازی، تولید، تحلیل و اتوماسیون به پلتفرم‌های دیگر هم منتقل می‌شوند. انتقال به معنی کپی یکسان نیست؛ قالب، ریتم، طول و دعوت به اقدام باید برای هر شبکه بازطراحی شود.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>مهارت نمونه در اینستاگرام</th><th>اصل انتقال</th></tr></thead>
+        <tbody>
+          <tr><td>ایده و پیام محتوا</td><td>موضوع، مسئله مخاطب و وعده بازطراحی می‌شود؛ زاویه پیام برای مخاطب هر پلتفرم تنظیم می‌شود.</td></tr>
+          <tr><td>ویدئوی عمودی Reels و Story</td><td>طول، هوک، زیرنویس و قواعد انتشار تطبیق داده می‌شود.</td></tr>
+          <tr><td>محتوای متنی Caption و Carousel</td><td>به پست متنی، رشته‌پست یا مقاله کوتاه تبدیل می‌شود.</td></tr>
+          <tr><td>تحلیل Insights و تعامل</td><td>شاخص بومی هر شبکه انتخاب می‌شود و مقایسه به‌صورت همسان انجام می‌شود.</td></tr>
+          <tr><td>مدیریت جامعه: کامنت و پیام</td><td>سیاست و امکانات پیام‌رسانی هر پلتفرم رعایت می‌شود.</td></tr>
+          <tr><td>اتوماسیون API رسمی و Workflow</td><td>اتصال فقط با مستندات و مجوز پلتفرم مقصد انجام می‌شود.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="eval">
+  <div class="wrap">
+    <span class="eyebrow">الگوی ارزیابی</span>
+    <h2>ارزیابی پروژه‌های پایانی</h2>
+    <p class="sec-lead">هر پنج معیار وزن برابر دارد. در سطح فوق‌پیشرفته، پروژه باید در محیط آزمایشی همراه با نمودار معماری، دسترسی‌ها، گزارش خطا، بازیابی و تأیید انسانی ارائه شود.</p>
+    <div class="bar" aria-hidden="true"><i style="background:var(--l1f)"></i><i style="background:var(--l2f)"></i><i style="background:var(--l3f)"></i><i style="background:var(--l1f);opacity:.6"></i><i style="background:var(--l2f);opacity:.6"></i></div>
+    <div class="eval">
+      <div><b>٪۲۰</b><span>تناسب با مسئله و مخاطب</span></div>
+      <div><b>٪۲۰</b><span>کیفیت و دقت خروجی محتوا</span></div>
+      <div><b>٪۲۰</b><span>اجرای درست ابزار و فرایند</span></div>
+      <div><b>٪۲۰</b><span>کنترل کیفیت، حریم خصوصی و حقوق استفاده</span></div>
+      <div><b>٪۲۰</b><span>مستندسازی، ارائه و قابلیت تکرار</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="glossary">
+  <div class="wrap">
+    <span class="eyebrow">واژه‌نامه</span>
+    <h2>واژه‌نامه کاربردی</h2>
+    <dl class="gloss" id="gloss"></dl>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <span class="eyebrow">منابع رسمی</span>
+    <h2>منابع رسمی برای به‌روزرسانی فنی دوره</h2>
+    <p class="sec-lead">ابزارهای هوش مصنوعی و رابط‌های برنامه‌نویسی به‌سرعت تغییر می‌کنند. مدرس باید پیش از ضبط، نسخه نرم‌افزار، وضعیت قابلیت، مجوزها و محدودیت‌های دسترسی را در مستندات رسمی بررسی کند.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>منبع</th><th>کاربرد در دوره</th></tr></thead>
+        <tbody>
+          <tr><td class="latin">Meta for Developers</td><td>تغییرات Instagram API، مسیرهای اتصال و مجوزهای اینستاگرام.</td></tr>
+          <tr><td class="latin">Instagram API / Meta collection</td><td>نمونه درخواست‌ها و قابلیت‌های API برای حساب‌های حرفه‌ای.</td></tr>
+          <tr><td class="latin">n8n Documentation</td><td>مستندات نصب، Workflow، هوش مصنوعی، امنیت و اتصال سرویس‌ها.</td></tr>
+          <tr><td class="latin">Ollama Documentation</td><td>اجرای مدل محلی، API و خروجی ساختاریافته.</td></tr>
+          <tr><td class="latin">LM Studio Documentation</td><td>اجرای مدل محلی، سرور API و ابزارهای توسعه.</td></tr>
+          <tr><td class="latin">ComfyUI Documentation</td><td>ساخت و اجرای Workflowهای نودمحور تولید تصویر.</td></tr>
+          <tr><td class="latin">Hugging Face PEFT Documentation</td><td>مفاهیم LoRA و روش‌های سازگارسازی کم‌هزینه مدل.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 style="margin-top:3rem;font-size:1.3rem">یادداشت‌های اجرایی و محدودیت‌ها</h3>
+    <ul class="notes">
+      <li>قابلیت‌های API اینستاگرام به نوع حساب، مسیر اتصال، مجوز، بررسی برنامه و سیاست‌های جاری متا وابسته است؛ پیش از تدریس هر قابلیت، دسترسی واقعی آن بررسی شود.</li>
+      <li>اجرای مدل لوکال به سخت‌افزار، سیستم‌عامل، اندازه مدل، کوانتایزیشن و نوع وظیفه وابسته است؛ یک مدل یا مشخصات سخت‌افزاری واحد برای همه هنرجویان تجویز نشود.</li>
+      <li>استفاده از تصویر، صدا، موسیقی، چهره، اسناد مشتری و داده‌های مخاطبان باید با مجوز مناسب و رعایت حریم خصوصی انجام شود.</li>
+      <li>ایجنت‌ها و Workflowها نباید دسترسی نامحدود داشته باشند؛ اقدامات حساس، مالی، عمومی یا برگشت‌ناپذیر باید با کنترل و تأیید انسانی طراحی شوند.</li>
+      <li>قیمت، پلن، دسترسی منطقه‌ای و محدودیت سرویس‌ها داده‌های زمان‌مند هستند؛ تاریخ بررسی آن‌ها هنگام ضبط ثبت شود.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b class="latin">AI Content Academy</b>
+    راهنمای جامع سرفصل‌ها · نسخه طراحی آموزشی · ۱ آذر ۱۴۰۵
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var fa='۰۱۲۳۴۵۶۷۸۹';
+  function toFa(n){return String(n).replace(/\d/g,function(d){return fa[d]})}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+  var road=document.getElementById('road'), levels=document.getElementById('levels');
+  var rh='',lh='';
+  LV.forEach(function(L){
+    var c='c'+L.id;
+    rh+='<div class="rcard '+c+'"><span class="tag">'+esc(L.name)+'</span><h3>'+esc(L.role)+'</h3><div class="hrs">'+toFa(40)+' ساعت</div><ol>';
+    L.ch.forEach(function(ch,i){rh+='<li><a href="#l'+L.id+'c'+(i+1)+'"><span class="n">'+toFa(i+1)+'</span><span>'+esc(ch.t)+'</span></a></li>'});
+    rh+='</ol></div>';
+
+    lh+='<section class="level lv'+L.id+'" id="level-'+L.id+'"><div class="wrap">';
+    lh+='<div class="lv-head"><div><span class="lv-badge">دوره '+esc(L.name)+'</span><h2><span class="latin">'+esc(L.en)+'</span></h2><p class="lv-sub">'+esc(L.sub)+'</p></div><p class="lv-meta">'+esc(L.meta)+'</p></div>';
+    lh+='<div class="lv-info"><div><h4>مخاطبان این سطح</h4><p>'+esc(L.aud)+'</p></div>';
+    lh+='<div><h4>دستاوردهای یادگیری</h4><ul>'+L.out.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
+    lh+='<div><h4>تجهیزات و پیش‌نیازهای پیشنهادی</h4><p>'+esc(L.equip)+'</p></div></div>';
+    lh+='<div class="tools"><h3>فصل‌های دوره</h3><button class="btn" type="button" data-toggle="'+L.id+'" id="tg'+L.id+'">باز کردن همه فصل‌ها</button></div><div id="chs'+L.id+'">';
+    L.ch.forEach(function(ch,i){
+      lh+='<details class="chap" id="l'+L.id+'c'+(i+1)+'"><summary><span class="cnum">'+toFa(i+1)+'</span><span class="ctitle">'+esc(ch.t)+'</span><span class="chip">۵ ساعت / ۵ جلسه</span><span class="cgoal">'+esc(ch.g)+'</span><span class="chev"></span></summary>';
+      lh+='<div class="cbody"><div class="cdesc"><h5>شرح آموزشی</h5><p>'+esc(ch.d)+'</p></div>';
+      lh+='<div class="two"><div><h5>سرفصل‌ها و مباحث</h5><ul class="topics">'+ch.tp.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>';
+      lh+='<div><div class="box"><h5>کارگاه عملی</h5>'+esc(ch.w)+'</div><div class="box"><h5>خروجی مورد انتظار</h5>'+esc(ch.o)+'</div></div></div>';
+      lh+='<div><h5>تقسیم پیشنهادی جلسات</h5><ol class="sess">'+ch.s.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol></div></div></details>';
+    });
+    lh+='</div></div></section>';
+  });
+  road.innerHTML=rh; levels.innerHTML=lh;
+
+  // open a chapter when reached by an anchor link
+  function openHash(){
+    var id=location.hash.slice(1); if(!id) return;
+    var el=document.getElementById(id);
+    if(el && el.tagName==='DETAILS'){el.open=true; setTimeout(function(){el.scrollIntoView({block:'start'})},30)}
+  }
+  window.addEventListener('hashchange',openHash); openHash();
+  road.addEventListener('click',function(e){
+    var a=e.target.closest('a'); if(!a) return;
+    var el=document.getElementById(a.getAttribute('href').slice(1)); if(el) el.open=true;
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-toggle]'); if(!b) return;
+    var id=b.getAttribute('data-toggle'), list=document.querySelectorAll('#chs'+id+' details');
+    var allOpen=Array.prototype.every.call(list,function(d){return d.open});
+    Array.prototype.forEach.call(list,function(d){d.open=!allOpen});
+    b.textContent=allOpen?'باز کردن همه فصل‌ها':'بستن همه فصل‌ها';
+  });
+
+  var G=[['AI / هوش مصنوعی','سامانه‌هایی که وظایفی مانند تولید، پیش‌بینی، دسته‌بندی یا تحلیل را انجام می‌دهند.'],
+  ['Generative AI','مدل‌هایی که محتوای تازه مانند متن، تصویر، صدا یا ویدئو تولید می‌کنند.'],
+  ['Prompt','دستور و زمینه‌ای که برای هدایت مدل ارائه می‌شود.'],
+  ['Context','اطلاعات زمینه‌ای لازم برای فهم درست درخواست.'],
+  ['Multimodal','مدلی که بیش از یک نوع ورودی یا خروجی مانند متن و تصویر را پشتیبانی می‌کند.'],
+  ['API','رابطی استاندارد برای درخواست داده یا اجرای قابلیت یک سرویس از طریق نرم‌افزار دیگر.'],
+  ['HTTP','پروتکل رایج ارتباط درخواست و پاسخ در وب.'],
+  ['JSON','قالب متنی ساختاریافته برای انتقال داده.'],
+  ['Webhook','آدرسی برای دریافت خودکار رویداد از یک سرویس دیگر.'],
+  ['Workflow','مجموعه‌ای از مراحل متصل برای اجرای یک فرایند.'],
+  ['Trigger','رویدادی که آغاز یک Workflow را فعال می‌کند.'],
+  ['Node','یک گام یا واحد عملیاتی در گردش‌کار.'],
+  ['Credential','اطلاعات امن اتصال و احراز هویت یک سرویس.'],
+  ['LLM','مدل زبانی بزرگ برای پردازش و تولید متن.'],
+  ['Local Model','مدلی که روی کامپیوتر یا زیرساخت تحت کنترل کاربر اجرا می‌شود.'],
+  ['Quantization','کاهش دقت عددی وزن‌های مدل با هدف کاهش مصرف حافظه و منابع.'],
+  ['LoRA','روش سازگارسازی کم‌هزینه‌تر مدل با آموزش پارامترهای افزوده محدود.'],
+  ['ComfyUI','محیط نودمحور برای ساخت و اجرای گردش‌کارهای تولید تصویر و رسانه.'],
+  ['Embedding','بردار عددی برای نمایش معنایی متن یا داده در فضای قابل جست‌وجو.'],
+  ['Vector Database','پایگاه داده‌ای برای ذخیره و جست‌وجوی بردارهای معنایی.'],
+  ['RAG','روش بازیابی اطلاعات مرتبط از منابع خارجی و استفاده از آن در پاسخ مدل.'],
+  ['Agent','سامانه‌ای که می‌تواند با هدف مشخص، از ابزارها برای انجام گام‌های مختلف استفاده کند.'],
+  ['MCP','پروتکلی برای اتصال مدل‌ها و برنامه‌های هوش مصنوعی به ابزارها و منابع.'],
+  ['Human-in-the-loop','قرار دادن انسان در نقطه بازبینی یا تأیید پیش از تصمیم یا اقدام مهم.'],
+  ['KPI','شاخص کلیدی عملکرد برای سنجش پیشرفت نسبت به هدف.'],
+  ['SOP','دستورالعمل استاندارد برای اجرای تکرارپذیر یک فرایند.'],
+  ['A/B Test','آزمایش دو نسخه با هدف مقایسه عملکرد تحت شرایط کنترل‌شده.'],
+  ['CTA','دعوت روشن به اقدام بعدی از مخاطب.']];
+  document.getElementById('gloss').innerHTML=G.map(function(g){return '<div><dt>'+esc(g[0])+'</dt><dd>'+esc(g[1])+'</dd></div>'}).join('');
+})();
+</script>
+
+</body></html>
